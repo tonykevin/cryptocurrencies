@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
+import { Form } from './components'
 import cryptoImage from './images/cryptoImage.png'
 
 const Container = styled.div`
@@ -23,7 +24,7 @@ const Heading = styled.h1`
   color: #fff;
   font-family: 'Bebas Neue', cursive;
   font-size: 50px;
-  font-weigth: 700;
+  font-weight: 700;
   margin-bottom: 3.2rem;
   margin-top: 5rem;
   text-align: left;
@@ -48,6 +49,7 @@ function App () {
       </div>
       <div>
         <Heading>Cotiza criptomonedas en tiempo real</Heading>
+        <Form />
       </div>
     </Container>
   )
