@@ -5,8 +5,10 @@ import { Form } from './components'
 import cryptoImage from './images/cryptoImage.png'
 
 const Container = styled.div`
-  max-width: 992px;
   margin: 0 auto;
+  max-width: 992px;
+  padding-left: 2rem;
+  padding-right: 2rem;
 
   @media (min-width: 992px) {
     column-gap: 2rem;
