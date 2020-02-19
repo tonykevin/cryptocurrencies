@@ -28,6 +28,7 @@ const Button = styled.button`
 
 const Form = () => {
   const [cryptoList, setCryptoList] = useState([])
+  const [error, setError] = useState(false)
 
   const CURRENCIES = [
     { code: 'EUR', name: 'Euro' },
@@ -53,8 +54,20 @@ const Form = () => {
     consultAPI()
   }, [])
 
+  const quoteCurrency = e => {
+    e.preventDefault()
+
+    if (currency === '' || cryptoCurrency === '') {
+      setError(true)
+      return 1
+    }
+
+    setError(false)
+  }
+
   return (
-    <form>
+    <form onSubmit={quoteCurrency}>
+      {error ? 'Hay un eror' : null}
       <SelectCurrency />
       <SelectCrypto />
       <Button type='submit'>Calcular</Button>
