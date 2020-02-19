@@ -21,10 +21,10 @@ const Select = styled.select`
   padding: 1rem;
   width: 100%;
 `
-const useCurrency = (label = 'Moneda', initialState = '', opts) => {
+const useCryptocurrency = (label = 'Criptomoneda', initialState = '', opts) => {
   const [state, setState] = useState(initialState)
 
-  const SelectCurrency = () => {
+  const SelectCrypto = () => {
     return (
       <>
         <Label>{label}</Label>
@@ -34,16 +34,16 @@ const useCurrency = (label = 'Moneda', initialState = '', opts) => {
         >
           <option value=''>-- Selecione --</option>
           {
-            opts.map(({ code, name }) => (
-              <option key={code} value={code}>{name}</option>
-            ))
+            // opts.map(({ code, name }) => (
+              // <option key={code} value={code}>{name}</option>
+            // ))
           }
         </Select>
       </>
     )
   }
 
-  return [state, SelectCurrency, setState]
+  return [state, SelectCrypto, setState]
 }
 
-export default useCurrency
+export default useCryptocurrency
