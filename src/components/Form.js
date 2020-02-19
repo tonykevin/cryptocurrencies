@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
+import { useCurrency } from '../hooks'
+
 const Button = styled.button`
   background-color: #66a2fe;
   border: none;
@@ -24,8 +26,12 @@ const Button = styled.button`
 `
 
 const Form = () => {
+  const [currency, SelectCurrency, updateState] = useCurrency()
   return (
-    <Button type='submit'>Calcular</Button>
+    <form>
+      <SelectCurrency />
+      <Button type='submit'>Calcular</Button>
+    </form>
   )
 }
 
