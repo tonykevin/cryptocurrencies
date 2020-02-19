@@ -7,7 +7,10 @@ const useCurrency = (label = 'Moneda', initialState = '', opts) => {
     return (
       <>
         <label>{label}</label>
-        <select>
+        <select
+          onChange={e => setState(e.target.value)}
+          value={state}
+        >
           <option value=''>-- Selecione --</option>
           {
             opts.map(({ code, name }) => (
