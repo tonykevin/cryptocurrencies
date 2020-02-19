@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
 
-const useCurrency = () => {
-  const [state, setState] = useState('')
+const useCurrency = (label = 'Moneda', initialState = '', opts) => {
+  const [state, setState] = useState(initialState)
 
   const Select = () => {
     return (
       <>
-        <label>Moneda</label>
+        <label>{label}</label>
         <select>
-          <option value='MXN'>Peso mexicano</option>
+          <option value=''>-- Selecione --</option>
+          {
+            opts.map(({ code, name }) => (
+              <option key={code} value={code}>{name}</option>
+            ))
+          }
         </select>
       </>
     )
