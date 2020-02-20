@@ -8,8 +8,7 @@ import cryptoImage from './images/cryptoImage.png'
 const Container = styled.div`
   margin: 0 auto;
   max-width: 992px;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: 1.5rem;
 
   @media (min-width: 992px) {
     column-gap: 2rem;
@@ -19,8 +18,11 @@ const Container = styled.div`
 `
 
 const Image = styled.img`
-  margin-top: 5rem;
   max-width: 100%;
+
+  @media (min-width: 992px) {
+    margin-top: 5rem;
+  }
 `
 
 const Heading = styled.h1`
@@ -29,7 +31,6 @@ const Heading = styled.h1`
   font-size: 50px;
   font-weight: 700;
   margin-bottom: 3.2rem;
-  margin-top: 5rem;
   text-align: left;
 
   &::after {
@@ -38,6 +39,9 @@ const Heading = styled.h1`
     display: block;
     height: 6px;
     width: 100px;
+  }
+  @media (min-width: 992px) {
+    margin-top: 5rem;
   }
 `
 
