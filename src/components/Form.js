@@ -3,6 +3,7 @@ import axios from 'axios'
 import styled from '@emotion/styled'
 
 import { useCryptocurrency, useCurrency } from '../hooks'
+import Error from './Error'
 
 const Button = styled.button`
   background-color: #66a2fe;
@@ -67,7 +68,7 @@ const Form = () => {
 
   return (
     <form onSubmit={quoteCurrency}>
-      {error ? 'Hay un eror' : null}
+      {error ? <Error message='Todos los campos son requeridos' /> : null}
       <SelectCurrency />
       <SelectCrypto />
       <Button type='submit'>Calcular</Button>
