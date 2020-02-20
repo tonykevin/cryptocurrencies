@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import styled from '@emotion/styled'
 
-import { Form } from './components'
+import { Form, Quotation } from './components'
 import cryptoImage from './images/cryptoImage.png'
 
 const Container = styled.div`
@@ -44,6 +44,7 @@ const Heading = styled.h1`
 function App () {
   const [currency, setCurrency] = useState('')
   const [cryptocurrency, setCryptocurrency] = useState('')
+  const [result, setResult] = useState({})
 
   useEffect(() => {
     const quoteCryptocurrency = async () => {
@@ -53,7 +54,7 @@ function App () {
       const url = `${baseUrl}?fsyms=${cryptocurrency}&tsyms=${currency}`
       console.log(url)
       const response = await axios.get(url)
-      console.log(response.data.DISPLAY[cryptocurrency][currency])
+      setResult(response.data.DISPLAY[cryptocurrency][currency])
     }
     quoteCryptocurrency()
   }, [cryptocurrency, currency])
@@ -72,6 +73,7 @@ function App () {
           setCryptocurrency={setCryptocurrency}
           setCurrency={setCurrency}
         />
+        <Quotation result={result} />
       </div>
     </Container>
   )
