@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import styled from '@emotion/styled'
 
-import { Form, Quotation } from './components'
+import { Form, Quotation, Spinner } from './components'
 import cryptoImage from './images/cryptoImage.png'
 
 const Container = styled.div`
@@ -45,6 +45,7 @@ function App () {
   const [currency, setCurrency] = useState('')
   const [cryptocurrency, setCryptocurrency] = useState('')
   const [result, setResult] = useState({})
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const quoteCryptocurrency = async () => {
@@ -52,9 +53,13 @@ function App () {
 
       const baseUrl = 'https://min-api.cryptocompare.com/data/pricemultifull'
       const url = `${baseUrl}?fsyms=${cryptocurrency}&tsyms=${currency}`
-      console.log(url)
       const response = await axios.get(url)
-      setResult(response.data.DISPLAY[cryptocurrency][currency])
+
+      setLoading(true)
+      setTimeout(() => {
+        setLoading(false)
+        setResult(response.data.DISPLAY[cryptocurrency][currency])
+      }, 3000)
     }
     quoteCryptocurrency()
   }, [cryptocurrency, currency])
@@ -73,7 +78,7 @@ function App () {
           setCryptocurrency={setCryptocurrency}
           setCurrency={setCurrency}
         />
-        <Quotation result={result} />
+        {loading ? <Spinner /> : <Quotation result={result} />}
       </div>
     </Container>
   )
