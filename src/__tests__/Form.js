@@ -7,6 +7,8 @@ import { cryptoList, currencies } from "../__mocks__";
 import { Form } from "../components";
 
 const axiosMock = axios;
+const setCryptocurrency = jest.fn();
+const setCurrency = jest.fn();
 
 test("<Form />", async () => {
   //Consume false data
@@ -14,7 +16,9 @@ test("<Form />", async () => {
     data: cryptoList,
   });
 
-  render(<Form />);
+  render(
+    <Form setCurrency={setCurrency} setCryptocurrency={setCryptocurrency} />
+  );
 
   // Check number of options for currencies
   const currencySelect = screen.getByTestId("currencySelect");
@@ -27,4 +31,15 @@ test("<Form />", async () => {
 
   expect(axiosMock.get).toHaveBeenCalled();
   expect(axiosMock.get).toHaveBeenCalledTimes(1);
+
+  // Select bitcoin and USD
+  userEvent.selectOptions(screen.getByTestId("currencySelect"), "USD");
+  userEvent.selectOptions(screen.getByTestId("cryptocurrencySelect"), "BTC");
+  userEvent.click(screen.getByTestId("submit"));
+
+  expect(setCurrency).toHaveBeenCalled();
+  expect(setCurrency).toHaveBeenCalledTimes(1);
+
+  expect(setCryptocurrency).toHaveBeenCalled();
+  expect(setCryptocurrency).toHaveBeenCalledTimes(1);
 });

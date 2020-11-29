@@ -28,7 +28,11 @@ const useCryptocurrency = (label = "Criptomoneda", initialState = "", opts) => {
     return (
       <>
         <Label>{label}</Label>
-        <Select onChange={(e) => setState(e.target.value)} value={state}>
+        <Select
+          data-testid="cryptocurrencySelect"
+          onChange={(e) => setState(e.target.value)}
+          value={state}
+        >
           <option value="">-- Selecione --</option>
           {opts.map(({ CoinInfo }) => (
             <option
